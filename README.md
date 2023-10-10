@@ -5,6 +5,7 @@
     - [Users \& Groups](#users--groups)
     - [Determining the version of operating system](#determining-the-version-of-operating-system)
     - [Viewing system log information](#viewing-system-log-information)
+    - [Installing applications on debian/Ubuntu Linux](#installing-applications-on-debianubuntu-linux)
 
 ## System Commands
 
@@ -26,4 +27,14 @@ uname -a
 
 ```sh
 sudo dmesg | less
+```
+
+### Installing applications on debian/Ubuntu Linux
+
+```sh
+apt search openjdk-17 | less
+sudo apt install tree
+apt list --installed
+apt list --upgradeable
+sudo apt upgrade
 ```
