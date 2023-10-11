@@ -5,7 +5,8 @@
     - [Users \& Groups](#users--groups)
     - [Determining the version of operating system](#determining-the-version-of-operating-system)
     - [Viewing system log information](#viewing-system-log-information)
-    - [Installing applications on debian/Ubuntu Linux](#installing-applications-on-debianubuntu-linux)
+    - [Installing applications on Debian/Ubuntu Linux](#installing-applications-on-debianubuntu-linux)
+    - [Getting process application IDs](#getting-process-application-ids)
 
 ## System Commands
 
@@ -29,7 +30,7 @@ uname -a
 sudo dmesg | less
 ```
 
-### Installing applications on debian/Ubuntu Linux
+### Installing applications on Debian/Ubuntu Linux
 
 ```sh
 apt search openjdk-17 | less
@@ -38,3 +39,5 @@ apt list --installed
 apt list --upgradeable
 sudo apt upgrade
 ```
+
+### Getting process application IDs
