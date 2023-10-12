@@ -9,6 +9,7 @@
     - [Getting process application IDs](#getting-process-application-ids)
     - [Managing system resources with TOP](#managing-system-resources-with-top)
     - [Finding processes by file \& Vice-Versa](#finding-processes-by-file--vice-versa)
+    - [Scheduling jobs with CRON](#scheduling-jobs-with-cron)
 
 ## System Commands
 
@@ -76,4 +77,16 @@ fuser file.db
 fuser -k file.db
 ps ax | grep 62205
 lsof -p 67367
+```
+
+### Scheduling jobs with CRON
+
+```sh
+man cron
+man -s5 crontab
+
+crontab -e
+# * * * * * date >> crontest.txt
+tail -f crontest.txt
+crontab --help
 ```
