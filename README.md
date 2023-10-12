@@ -8,6 +8,7 @@
     - [Installing applications on Debian/Ubuntu Linux](#installing-applications-on-debianubuntu-linux)
     - [Getting process application IDs](#getting-process-application-ids)
     - [Managing system resources with TOP](#managing-system-resources-with-top)
+    - [Finding processes by file \& Vice-Versa](#finding-processes-by-file--vice-versa)
 
 ## System Commands
 
@@ -65,4 +66,14 @@ use 'k' kill process.
 
 ```sh
 top
+```
+
+### Finding processes by file & Vice-Versa
+
+```sh
+lsof file.db
+fuser file.db
+fuser -k file.db
+ps ax | grep 62205
+lsof -p 67367
 ```
