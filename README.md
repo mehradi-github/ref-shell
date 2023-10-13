@@ -12,6 +12,7 @@
     - [Scheduling jobs with CRON](#scheduling-jobs-with-cron)
   - [Networking](#networking)
     - [Commands for troubleshooting network issues](#commands-for-troubleshooting-network-issues)
+    - [DNS Lookups](#dns-lookups)
 
 ## System Commands
 
@@ -121,3 +122,19 @@ crontab --help
 ## Networking
 
 ### Commands for troubleshooting network issues
+
+```sh
+netstat -in | sort -r -k5 | less
+ifconfig | less
+ping google.com
+traceroute google.com
+```
+
+### DNS Lookups
+
+```sh
+dig amazon.com
+dig amazon.com cname
+nslookup amazon.com
+
+```
