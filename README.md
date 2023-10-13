@@ -13,6 +13,7 @@
   - [Networking](#networking)
     - [Commands for troubleshooting network issues](#commands-for-troubleshooting-network-issues)
     - [DNS Lookups](#dns-lookups)
+    - [Secure remote operations with SSH](#secure-remote-operations-with-ssh)
 
 ## System Commands
 
@@ -136,5 +137,16 @@ traceroute google.com
 dig amazon.com
 dig amazon.com cname
 nslookup amazon.com
+
+```
+
+### Secure remote operations with SSH
+
+```sh
+ssh root@IP
+cat ~/.ssh/known_hosts
+ssh-keygen -t rsa
+ssh-copy-id root@IP
+cat ~/.ssh/authorized_keys
 
 ```
