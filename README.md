@@ -14,6 +14,7 @@
     - [Commands for troubleshooting network issues](#commands-for-troubleshooting-network-issues)
     - [DNS Lookups](#dns-lookups)
     - [Secure remote operations with SSH](#secure-remote-operations-with-ssh)
+    - [Testing web services with CURL](#testing-web-services-with-curl)
 
 ## System Commands
 
@@ -149,4 +150,15 @@ ssh-keygen -t rsa
 ssh-copy-id root@IP
 cat ~/.ssh/authorized_keys
 
+```
+
+### Testing web services with CURL
+
+```sh
+curl -H  "Content-Type: application/json" -s localhost:8080/v1/getdata -d '{"firstName":"jack", "salary":"100000"}' | jq
+
+curl -s localhost:8080/v1/getdata | jq .[].salary | awk '{total+=$1} END {printf "$%\047.2f\n",total}'
+# $420,000.00
+
+curl -X DELETE localhost:8080/v1/getdata/5
 ```
