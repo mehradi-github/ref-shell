@@ -10,6 +10,8 @@
     - [Managing system resources with TOP](#managing-system-resources-with-top)
     - [Finding processes by file \& Vice-Versa](#finding-processes-by-file--vice-versa)
     - [Scheduling jobs with CRON](#scheduling-jobs-with-cron)
+  - [Networking](#networking)
+    - [Commands for troubleshooting network issues](#commands-for-troubleshooting-network-issues)
 
 ## System Commands
 
@@ -115,3 +117,7 @@ crontab --help
        # Execute a program and run a notification every day at 10:00 am
        0 10 * * *  $HOME/bin/program | DISPLAY=:0 notify-send "Program run" "$(cat)"
 ```
+
+## Networking
+
+### Commands for troubleshooting network issues
