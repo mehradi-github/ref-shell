@@ -146,7 +146,12 @@ nslookup amazon.com
 ```sh
 ssh root@IP
 cat ~/.ssh/known_hosts
-ssh-keygen -t rsa
+
+ssh-keygen -f <filename> -t rsa -b 4096
+ssh-keygen -f <filename> -t dsa
+ssh-keygen -f <filename> -t ecdsa -b 521
+ssh-keygen -f <filename> -t ed25519
+
 ssh-copy-id root@IP
 cat ~/.ssh/authorized_keys
 
