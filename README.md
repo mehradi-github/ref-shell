@@ -14,6 +14,7 @@
     - [Commands for troubleshooting network issues](#commands-for-troubleshooting-network-issues)
     - [DNS Lookups](#dns-lookups)
     - [Secure remote operations with SSH](#secure-remote-operations-with-ssh)
+    - [Setting Proxy](#setting-proxy)
     - [Testing web services with CURL](#testing-web-services-with-curl)
 
 ## System Commands
@@ -170,6 +171,24 @@ service sshd reload
 
 
 
+```
+
+### Setting Proxy
+
+```sh
+# Show proxy
+printenv | grep -i proxy
+unset all_proxy && unset ALL_PROXY
+export all_proxy=socks5://127.0.0.1:20170/ && export ALL_PROXY=socks5://127.0.0.1:20170/
+export http_proxy=http://127.0.0.1:20171/ && export HTTP_PROXY=http://127.0.0.1:20171/
+export https_proxy=http://127.0.0.1:20171/ && export HTTPS_PROXY=http://127.0.0.1:20171/
+
+# Setting Proxy for sudo
+sudo visudo -f /etc/sudoers.d/NAME
+# Write in above file
+# Defaults env_keep += "no_proxy all_proxy NO_PROXY ALL_PROXY"
+Defaults env_keep += "no_proxy NO_PROXY http_proxy HTTP_PROXY https_proxy HTTPS_PROXY"
+source ~/.bashrc
 ```
 
 ### Testing web services with CURL
