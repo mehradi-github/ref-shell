@@ -163,7 +163,10 @@ cat ~/.ssh/authorized_keys
 ssh USERNAME@<target-server>
 ssh root@127.0.0.1
 
-
+# Disabling to use a login and password to authenticate
+vi /etc/ssh/sshd_config # passwordAthuntication no
+service ssh restart
+service sshd reload
 
 
 
