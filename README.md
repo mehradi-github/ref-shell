@@ -3,6 +3,7 @@
 - [Essential Shell scripting for developers](#essential-shell-scripting-for-developers)
   - [Text commands](#text-commands)
     - [AWK command](#awk-command)
+    - [SED command](#sed-command)
   - [System Commands](#system-commands)
     - [Users \& Groups](#users--groups)
     - [Determining the version of operating system](#determining-the-version-of-operating-system)
@@ -48,6 +49,28 @@ awk '{print $1,$NF}' employee.txt
 
 # Display Line From 3 to 6
 awk 'NR==3, NR==6 {print NR,$0}' employee.txt
+
+```
+
+### SED command
+
+```sh
+# s: s/regexp/replacement/
+head -n4 other.txt | sed 's/,/:/g'
+
+head -n4 other.txt | sed 's@/@#@g'
+#OR
+head -n4 other.txt | sed 's/\//#/g'
+
+# Delete range line 2 to 4.
+sed '2,4d' other.txt
+# Delete any expect range line 2 to 4.
+sed '2,4!d' other.txt
+# Multiple run command
+sed -e '2,4!d'  -e 's/,/:/g' other.txt
+
+# Using regexp-extended convert date format from 11/01/2023 to 2023-11-1.
+sed -E -e '2,4!d'  -e 's/,/:/g' -e 's#([[:digit:]]{1,2})/([[:digit:]]{1,2})/([[:digit:]]{4})#\3-\1-\2#g' other.txt
 
 ```
 
