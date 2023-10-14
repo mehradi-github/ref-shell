@@ -144,11 +144,31 @@ nslookup amazon.com
 ### Secure remote operations with SSH
 
 ```sh
-ssh root@IP
+# Generating ssh key
+ssh-keygen -f <filename> -t rsa -b 4096
+ssh-keygen -f <filename> -t dsa
+ssh-keygen -f <filename> -t ecdsa -b 521
+ssh-keygen -f <filename> -t ed25519
+
+# Removing Old host key in /home/$USER/.ssh/known_hosts
+ssh-keygen -f "~/.ssh/known_hosts" -R "target-server"
 cat ~/.ssh/known_hosts
-ssh-keygen -t rsa
-ssh-copy-id root@IP
+
+#scp ~/.ssh/id_rsa.pub USER@<target-server>:/root/.ssh/uploaded_key.pub
+#cat ~/.ssh/uploaded_key.pub >> ~/.ssh/authorized_keys
+ssh-copy-id -i ~/.ssh/mykey USERNAME@<target-server>
 cat ~/.ssh/authorized_keys
+
+# Connetct to server via ssh
+ssh USERNAME@<target-server>
+ssh root@127.0.0.1
+
+# Disabling to use a login and password to authenticate
+vi /etc/ssh/sshd_config # passwordAthuntication no
+service ssh restart
+service sshd reload
+
+
 
 ```
 
