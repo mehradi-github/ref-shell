@@ -1,6 +1,8 @@
 # Essential Shell scripting for developers
 
 - [Essential Shell scripting for developers](#essential-shell-scripting-for-developers)
+  - [Text commands](#text-commands)
+    - [AWK command](#awk-command)
   - [System Commands](#system-commands)
     - [Users \& Groups](#users--groups)
     - [Determining the version of operating system](#determining-the-version-of-operating-system)
@@ -16,6 +18,38 @@
     - [Secure remote operations with SSH](#secure-remote-operations-with-ssh)
     - [Setting Proxy](#setting-proxy)
     - [Testing web services with CURL](#testing-web-services-with-curl)
+
+## Text commands
+
+### AWK command
+
+Awk is a scripting language used for manipulating data and generating reports.
+
+```sh
+# Print the lines which match the given pattern
+awk '/manager/ {print}' employee.txt
+# Output:
+# ajay manager account 45000
+# varun manager sales 50000
+
+# Splitting a Line Into Fields
+awk '{print $1,$4}' employee.txt
+# ajay 45000
+# sunil 25000
+
+# Built-In Variables
+# Display Line Number
+awk '{print NR,$0}' employee.txt
+# 1 ajay manager account 45000
+# 2 sunil clerk account 25000
+
+# Display Last Field
+awk '{print $1,$NF}' employee.txt
+
+# Display Line From 3 to 6
+awk 'NR==3, NR==6 {print NR,$0}' employee.txt
+
+```
 
 ## System Commands
 
