@@ -5,6 +5,7 @@
     - [AWK command](#awk-command)
     - [SED command](#sed-command)
     - [Comparing text files for differences](#comparing-text-files-for-differences)
+    - [Converting characters of text](#converting-characters-of-text)
   - [System Commands](#system-commands)
     - [Users \& Groups](#users--groups)
     - [Determining the version of operating system](#determining-the-version-of-operating-system)
@@ -83,6 +84,13 @@ sed -E -e '2,4!d'  -e 's/,/:/g' -e 's#([[:digit:]]{1,2})/([[:digit:]]{1,2})/([[:
 diff file1 file2 > patch
 patch file1 patch
 diff -y file1 file2
+```
+
+### Converting characters of text
+
+```sh
+cat file3 | tr [:lower:] [:upper:] > upper.txt
+head -n4 other.txt | tail -n+2 | tr ',' ':'
 ```
 
 ## System Commands
