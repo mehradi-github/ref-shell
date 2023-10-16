@@ -23,6 +23,7 @@
     - [Testing web services with CURL](#testing-web-services-with-curl)
   - [Utility commands](#utility-commands)
     - [Archiving files \& directories](#archiving-files--directories)
+    - [Executing dynamic commands (xargs)](#executing-dynamic-commands-xargs)
 
 ## Text commands
 
@@ -302,7 +303,12 @@ zip -x dir1/.git/\* "*.jar" -r arch dir1/ file*
 
 zip -sf  arch.zip | less
 unzip arch.zip
+```
 
+### Executing dynamic commands (xargs)
 
-
+```sh
+ls file* | xargs -I{} mv {} {}.txt
+seq 1 10 | xargs -I{} sed '{}!d' file.csv
+seq -f "%02g" 0 9 | xargs -I{} sh -c 'sed "{}!d" file.csv >> file-{}.txt'
 ```
