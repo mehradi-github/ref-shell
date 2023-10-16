@@ -19,6 +19,8 @@
     - [Secure remote operations with SSH](#secure-remote-operations-with-ssh)
     - [Setting Proxy](#setting-proxy)
     - [Testing web services with CURL](#testing-web-services-with-curl)
+  - [Utility commands](#utility-commands)
+    - [Archiving files \& directories](#archiving-files--directories)
 
 ## Text commands
 
@@ -257,4 +259,33 @@ curl -s localhost:8080/v1/getdata | jq .[].salary | awk '{total+=$1} END {printf
 # $420,000.00
 
 curl -X DELETE localhost:8080/v1/getdata/5
+```
+
+## Utility commands
+
+### Archiving files & directories
+
+```sh
+# gzp & bzip2
+time gzip -k -1 file.csv
+time bzip2 -k -9 file.csv
+bzcat file.bz2 | grep -i "name" | wc -l
+gunzip file.csv.gz
+bunzip2 file.csv.bz2
+
+#  tar
+tar --exclude "build/*" --exclude ".idea/*" -acvf dir1.tar.bz2 dir1 file1 file2
+tar -tvf dir1.tar.bz2 | less
+
+# zip
+du -sh dir1
+zip -r arch dir1/ file*
+# exclude files
+zip -x dir1/.git/\* "*.jar" -r arch dir1/ file*
+
+zip -sf  arch.zip | less
+unzip arch.zip
+
+
+
 ```
