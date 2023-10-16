@@ -2,12 +2,14 @@
 
 - [Essential Shell scripting for developers](#essential-shell-scripting-for-developers)
   - [The Basic](#the-basic)
+    - [Operators](#operators)
     - [Create a user](#create-a-user)
     - [Assigning Sudo Rights to a user](#assigning-sudo-rights-to-a-user)
     - [Shows command descriptions](#shows-command-descriptions)
     - [hardware info](#hardware-info)
     - [Display the information of OS](#display-the-information-of-os)
     - [Linux system shutdown and reboot](#linux-system-shutdown-and-reboot)
+    - [Delete and rename and move file](#delete-and-rename-and-move-file)
   - [Text commands](#text-commands)
     - [AWK command](#awk-command)
     - [SED command](#sed-command)
@@ -15,7 +17,7 @@
     - [Converting characters of text](#converting-characters-of-text)
     - [WC command](#wc-command)
   - [Shells](#shells)
-    - [Creating job and kill](#creating-job-and-kill)
+    - [Creating job and kill process](#creating-job-and-kill-process)
     - [Redirection \& Piping](#redirection--piping)
   - [System Commands](#system-commands)
     - [Users \& Groups](#users--groups)
@@ -43,18 +45,50 @@
 ## The Basic
 
 ```sh
-su - USER
 whoami
 id
+su - USER
 
-#User List
+# Change password
+sudo passwd
+
+# User List
 cat /etc/passwd
-#Group list
+# Group list
 cat /etc/group
 
-#CTRL+L
+
+# CTRL+L
 clear
 
+```
+
+### Operators
+
+```sh
+#The Redirection Operators (>, >>, <)
+# re-writing the file
+echo "abc" > test.txt
+
+# append to a file
+echo "defg" >> test.txt
+
+(ls *.txt > txt-files.list && cp *.tx ~) && (ls *.rpm > rpm-packages.list && cp *.rpm ~) || echo "Precedence Test!"
+
+# The Ampersand Operator (&): execute that Linux command in the background
+gedit &
+
+# The Semicolon Operator (;): execute commands in a defined, sequential order
+pwd ; mkdir test ; cd test ; touch file
+
+# The OR Operator (||): execute the command that follows only if the preceding command fails
+bad_command || ls
+
+# The Pipe Operator (|): directs the output of the preceding command as input to the succeeding command
+cat test | grep -i "makeuseof"
+
+# The AND Operator (&&): execute commands only if the preceding command was successfully executed
+pwd && mkdir test && cd test && bad_command && ls
 ```
 
 ### Create a user
@@ -72,6 +106,13 @@ groups USERNAME
 
 #Remove a user from a group
 sudo gpasswd -d USERNAME wheel
+
+# Edit the sudoers file
+visudo
+/ALL
+USERNAME    ALL=(ALL)       ALL
+# /etc/security/limits.conf or /etc/security/limits.d/90-nproc.conf
+<user>       -          nproc     2048      <<<----[ Only for "<user>" user ]
 ```
 
 ### Shows command descriptions
@@ -108,6 +149,14 @@ sudo poweroff
 
 sudo shutdown -r now
 sudo reboot
+```
+
+### Delete and rename and move file
+
+```sh
+mv -t DESTINATION file1 file2 file3
+mv ./old-name.txt ./new-name.txt
+rm -f name*
 ```
 
 ## Text commands
@@ -200,13 +249,18 @@ apt list installed | wc -l
 
 ## Shells
 
-### Creating job and kill
+### Creating job and kill process
 
 ```sh
 watch date
 ps
 kill -l
 kill -9 NUM
+
+# list open files
+sudo lsof /etc/sudoers
+kill -15 PID
+
 ```
 
 ### Redirection & Piping
@@ -261,7 +315,8 @@ sudo dmesg | less
 
 ```sh
 apt search openjdk-17 | less
-sudo apt install tree
+sudo apt install tree -y
+
 apt list --installed
 apt list --upgradeable
 sudo apt upgrade
