@@ -4,6 +4,7 @@
   - [Text commands](#text-commands)
     - [AWK command](#awk-command)
     - [SED command](#sed-command)
+    - [Comparing text files for differences](#comparing-text-files-for-differences)
   - [System Commands](#system-commands)
     - [Users \& Groups](#users--groups)
     - [Determining the version of operating system](#determining-the-version-of-operating-system)
@@ -74,6 +75,14 @@ sed -e '2,4!d'  -e 's/,/:/g' other.txt
 # Using regexp-extended convert date format from 11/01/2023 to 2023-11-1.
 sed -E -e '2,4!d'  -e 's/,/:/g' -e 's#([[:digit:]]{1,2})/([[:digit:]]{1,2})/([[:digit:]]{4})#\3-\1-\2#g' other.txt
 
+```
+
+### Comparing text files for differences
+
+```sh
+diff file1 file2 > patch
+patch file1 patch
+diff -y file1 file2
 ```
 
 ## System Commands
