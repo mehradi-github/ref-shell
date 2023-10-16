@@ -24,6 +24,7 @@
   - [Utility commands](#utility-commands)
     - [Archiving files \& directories](#archiving-files--directories)
     - [Executing dynamic commands (xargs)](#executing-dynamic-commands-xargs)
+    - [Searching for files](#searching-for-files)
 
 ## Text commands
 
@@ -311,4 +312,21 @@ unzip arch.zip
 ls file* | xargs -I{} mv {} {}.txt
 seq 1 10 | xargs -I{} sed '{}!d' file.csv
 seq -f "%02g" 0 9 | xargs -I{} sh -c 'sed "{}!d" file.csv >> file-{}.txt'
+```
+
+### Searching for files
+
+```sh
+dd if=dev/random of=testfile bs=500M count=1
+touch -t 2208150000 file-16.txt
+
+find . -not -name "file???"
+find -E . -print
+find -E . -regex ".*file-[[:digit:]]{2}"
+find . -empty
+find . -size -100M -or -size +500M
+find . -perm o+rwx
+find . -perm 0664
+find . -atime +120w
+find . -name "file*" -exec mv {} {}.txt \;
 ```
