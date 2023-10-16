@@ -2,14 +2,9 @@
 
 - [Essential Shell scripting for developers](#essential-shell-scripting-for-developers)
   - [The Basic](#the-basic)
-    - [Operators](#operators)
-    - [Create a user](#create-a-user)
-    - [Assigning Sudo Rights to a user](#assigning-sudo-rights-to-a-user)
     - [Shows command descriptions](#shows-command-descriptions)
-    - [hardware info](#hardware-info)
-    - [Display the information of OS](#display-the-information-of-os)
-    - [Linux system shutdown and reboot](#linux-system-shutdown-and-reboot)
-    - [Delete and rename and move file](#delete-and-rename-and-move-file)
+    - [Operators](#operators)
+    - [Redirection \& Piping](#redirection--piping)
   - [Text commands](#text-commands)
     - [AWK command](#awk-command)
     - [SED command](#sed-command)
@@ -18,10 +13,13 @@
     - [WC command](#wc-command)
   - [Shells](#shells)
     - [Creating job and kill process](#creating-job-and-kill-process)
-    - [Redirection \& Piping](#redirection--piping)
   - [System Commands](#system-commands)
-    - [Users \& Groups](#users--groups)
+    - [Users and Groups](#users-and-groups)
+    - [Assigning Sudo Rights to a user](#assigning-sudo-rights-to-a-user)
+    - [hardware info](#hardware-info)
+    - [Delete and rename and move file](#delete-and-rename-and-move-file)
     - [Determining the version of operating system](#determining-the-version-of-operating-system)
+    - [Linux system shutdown and reboot](#linux-system-shutdown-and-reboot)
     - [Viewing system log information](#viewing-system-log-information)
     - [Installing applications on Debian/Ubuntu Linux](#installing-applications-on-debianubuntu-linux)
     - [Getting process application IDs](#getting-process-application-ids)
@@ -45,22 +43,21 @@
 ## The Basic
 
 ```sh
-whoami
-id
-su - USER
-
-# Change password
-sudo passwd
-
-# User List
-cat /etc/passwd
-# Group list
-cat /etc/group
-
 
 # CTRL+L
 clear
 
+```
+
+### Shows command descriptions
+
+```sh
+whatis <COMMAND>
+man <COMMAND>
+
+# help <COMMAND>
+<COMMAND> --help
+<COMMAND> -h
 ```
 
 ### Operators
@@ -91,72 +88,30 @@ cat test | grep -i "makeuseof"
 pwd && mkdir test && cd test && bad_command && ls
 ```
 
-### Create a user
+### Redirection & Piping
 
 ```sh
-useradd [options] USERNAME
-passwd USERNAME
-```
+ls -l | grep sam | awk '{print $9}'
+find ./ -name "junk" 2> /dev/null > output.txt
 
-### Assigning Sudo Rights to a user
+cat < output.txt > other.txt
+(cat < output.txt) > other.txt
 
-```sh
-usermod -aG wheel USERNAME
-groups USERNAME
+cat << EOF >>  other.txt
+> num,date
+> 1,01/01/2023
+> 2,01/01/2022
+> 3,01/01/2021
+> 4,01/01/2020
+> 5,01/01/2019
+EOF
 
-#Remove a user from a group
-sudo gpasswd -d USERNAME wheel
+wc other.txt
+cat other.txt | sort -g
+head -n5 other.txt | tail -n+2
 
-# Edit the sudoers file
-visudo
-/ALL
-USERNAME    ALL=(ALL)       ALL
-# /etc/security/limits.conf or /etc/security/limits.d/90-nproc.conf
-<user>       -          nproc     2048      <<<----[ Only for "<user>" user ]
-```
+head -n4 other.txt | tail -n+2 | sort -r -t "/" -k 3
 
-### Shows command descriptions
-
-```sh
-whatis <COMMAND>
-man <COMMAND>
-```
-
-### hardware info
-
-```sh
-cat /proc/cpuinfo
-lscpu
-```
-
-### Display the information of OS
-
-```sh
-cat /etc/os-release
-uname -a
-
-lsb_release -a
-neofetch
-```
-
-### Linux system shutdown and reboot
-
-```sh
-sudo shutdown -p now
-shutdown -h now
-shutdown -h +0
-sudo poweroff
-
-sudo shutdown -r now
-sudo reboot
-```
-
-### Delete and rename and move file
-
-```sh
-mv -t DESTINATION file1 file2 file3
-mv ./old-name.txt ./new-name.txt
-rm -f name*
 ```
 
 ## Text commands
@@ -265,46 +220,83 @@ kill -15 PID
 
 ```
 
-### Redirection & Piping
+## System Commands
+
+### Users and Groups
 
 ```sh
-ls -l | grep sam | awk '{print $9}'
-find ./ -name "junk" 2> /dev/null > output.txt
 
-cat < output.txt > other.txt
-(cat < output.txt) > other.txt
+whoami
+id
+su - USER
 
-cat << EOF >>  other.txt
-> num,date
-> 1,01/01/2023
-> 2,01/01/2022
-> 3,01/01/2021
-> 4,01/01/2020
-> 5,01/01/2019
-EOF
+useradd [options] USERNAME
+passwd USERNAME
 
-wc other.txt
-cat other.txt | sort -g
-head -n5 other.txt | tail -n+2
+# Change password
+sudo passwd
+sudo less shadow
 
-head -n4 other.txt | tail -n+2 | sort -r -t "/" -k 3
+# User List
+cat /etc/passwd
+# Group list
+cat /etc/group
 
 ```
 
-## System Commands
-
-### Users & Groups
+### Assigning Sudo Rights to a user
 
 ```sh
-less /etc/passwd
-sudo less shadow
+usermod -aG wheel USERNAME
+groups USERNAME
+
+#Remove a user from a group
+sudo gpasswd -d USERNAME wheel
+
+# Edit the sudoers file
+visudo
+/ALL
+USERNAME    ALL=(ALL)       ALL
+# /etc/security/limits.conf or /etc/security/limits.d/90-nproc.conf
+<user>       -          nproc     2048      <<<----[ Only for "<user>" user ]
+```
+
+### hardware info
+
+```sh
+cat /proc/cpuinfo
+lscpu
+```
+
+### Delete and rename and move file
+
+```sh
+mv -t DESTINATION file1 file2 file3
+mv ./old-name.txt ./new-name.txt
+rm -f name*
 ```
 
 ### Determining the version of operating system
 
 ```sh
-lsb_release -a
+cat /etc/os-release
 uname -a
+
+lsb_release -a
+neofetch
+
+```
+
+### Linux system shutdown and reboot
+
+```sh
+sudo shutdown -p now
+shutdown -h now
+shutdown -h +0
+sudo poweroff
+
+sudo shutdown -r now
+sudo reboot
 ```
 
 ### Viewing system log information
