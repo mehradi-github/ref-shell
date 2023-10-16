@@ -1,6 +1,8 @@
 # Essential Shell scripting for developers
 
 - [Essential Shell scripting for developers](#essential-shell-scripting-for-developers)
+  - [The Basic](#the-basic)
+    - [Linux system shutdown and reboot](#linux-system-shutdown-and-reboot)
   - [Text commands](#text-commands)
     - [AWK command](#awk-command)
     - [SED command](#sed-command)
@@ -28,6 +30,20 @@
     - [Archiving files \& directories](#archiving-files--directories)
     - [Executing dynamic commands (xargs)](#executing-dynamic-commands-xargs)
     - [Searching for files](#searching-for-files)
+
+## The Basic
+
+### Linux system shutdown and reboot
+
+```sh
+sudo shutdown -p now
+shutdown -h now
+shutdown -h +0
+sudo poweroff
+
+sudo shutdown -r now
+sudo reboot
+```
 
 ## Text commands
 
