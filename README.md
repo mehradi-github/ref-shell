@@ -11,8 +11,6 @@
     - [Comparing text files for differences](#comparing-text-files-for-differences)
     - [Converting characters of text](#converting-characters-of-text)
     - [WC command](#wc-command)
-  - [Shells](#shells)
-    - [Creating job and kill process](#creating-job-and-kill-process)
   - [System Commands](#system-commands)
     - [Users and Groups](#users-and-groups)
     - [Assigning Sudo Rights to a user](#assigning-sudo-rights-to-a-user)
@@ -25,6 +23,7 @@
     - [Getting process application IDs](#getting-process-application-ids)
     - [Managing system resources with TOP](#managing-system-resources-with-top)
     - [Finding processes by file \& Vice-Versa](#finding-processes-by-file--vice-versa)
+    - [Creating job and kill process](#creating-job-and-kill-process)
     - [Scheduling jobs with CRON](#scheduling-jobs-with-cron)
   - [Networking](#networking)
     - [Commands for troubleshooting network issues](#commands-for-troubleshooting-network-issues)
@@ -204,22 +203,6 @@ wc -m state.txt
 apt list installed | wc -l
 ```
 
-## Shells
-
-### Creating job and kill process
-
-```sh
-watch date
-ps
-kill -l
-kill -9 NUM
-
-# list open files
-sudo lsof /etc/sudoers
-kill -15 PID
-
-```
-
 ## System Commands
 
 ### Users and Groups
@@ -355,6 +338,20 @@ fuser file.db
 fuser -k file.db
 ps ax | grep 62205
 lsof -p 67367
+```
+
+### Creating job and kill process
+
+```sh
+watch date
+ps
+kill -l
+kill -9 NUM
+
+# list open files
+sudo lsof /etc/sudoers
+kill -15 PID
+
 ```
 
 ### Scheduling jobs with CRON
