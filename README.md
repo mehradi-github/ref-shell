@@ -6,6 +6,8 @@
     - [SED command](#sed-command)
     - [Comparing text files for differences](#comparing-text-files-for-differences)
     - [Converting characters of text](#converting-characters-of-text)
+  - [Shells](#shells)
+    - [Creating job and kill](#creating-job-and-kill)
   - [System Commands](#system-commands)
     - [Users \& Groups](#users--groups)
     - [Determining the version of operating system](#determining-the-version-of-operating-system)
@@ -93,6 +95,17 @@ diff -y file1 file2
 ```sh
 cat file3 | tr [:lower:] [:upper:] > upper.txt
 head -n4 other.txt | tail -n+2 | tr ',' ':'
+```
+
+## Shells
+
+### Creating job and kill
+
+```sh
+watch date
+ps
+kill -l
+kill -9 NUM
 ```
 
 ## System Commands
