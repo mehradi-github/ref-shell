@@ -8,6 +8,7 @@
     - [SED command](#sed-command)
     - [Comparing text files for differences](#comparing-text-files-for-differences)
     - [Converting characters of text](#converting-characters-of-text)
+    - [WC command](#wc-command)
   - [Shells](#shells)
     - [Creating job and kill](#creating-job-and-kill)
     - [Redirection \& Piping](#redirection--piping)
@@ -114,6 +115,25 @@ cat file3 | tr [:lower:] [:upper:] > upper.txt
 head -n4 other.txt | tail -n+2 | tr ',' ':'
 ```
 
+### WC command
+
+Find out number of lines, word count, byte and characters count
+
+```sh
+wc -l state.txt capital.txt
+#   5 state.txt
+#   5 capital.txt
+#  10 total
+
+wc -w state.txt
+# 7 state.txt
+
+wc -m state.txt
+# 56 state.txt
+
+apt list installed | wc -l
+```
+
 ## Shells
 
 ### Creating job and kill
@@ -181,6 +201,11 @@ sudo apt install tree
 apt list --installed
 apt list --upgradeable
 sudo apt upgrade
+
+
+apt list installed > my_list.txt
+apt list installed | egrep -i <NAME>
+
 ```
 
 ### Getting process application IDs
