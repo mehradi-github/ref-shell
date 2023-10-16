@@ -193,6 +193,8 @@ awk 'NR==3, NR==6 {print NR,$0}' employee.txt
 
 ### SED command
 
+stream editor for filtering and transforming text
+
 ```sh
 # s: s/regexp/replacement/
 head -n4 other.txt | sed 's/,/:/g'
