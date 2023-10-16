@@ -2,6 +2,11 @@
 
 - [Essential Shell scripting for developers](#essential-shell-scripting-for-developers)
   - [The Basic](#the-basic)
+    - [Create a user](#create-a-user)
+    - [Assigning Sudo Rights to a user](#assigning-sudo-rights-to-a-user)
+    - [Shows command descriptions](#shows-command-descriptions)
+    - [hardware info](#hardware-info)
+    - [Display the information of OS](#display-the-information-of-os)
     - [Linux system shutdown and reboot](#linux-system-shutdown-and-reboot)
   - [Text commands](#text-commands)
     - [AWK command](#awk-command)
@@ -27,12 +32,71 @@
     - [Secure remote operations with SSH](#secure-remote-operations-with-ssh)
     - [Setting Proxy](#setting-proxy)
     - [Testing web services with CURL](#testing-web-services-with-curl)
+    - [Grabing an ip automatically from DHCP](#grabing-an-ip-automatically-from-dhcp)
+    - [Display all interfaces which are currently available, even if down](#display-all-interfaces-which-are-currently-available-even-if-down)
+    - [What Is My IP Address?](#what-is-my-ip-address)
   - [Utility commands](#utility-commands)
     - [Archiving files \& directories](#archiving-files--directories)
     - [Executing dynamic commands (xargs)](#executing-dynamic-commands-xargs)
     - [Searching for files](#searching-for-files)
 
 ## The Basic
+
+```sh
+su - USER
+whoami
+id
+
+#User List
+cat /etc/passwd
+#Group list
+cat /etc/group
+
+#CTRL+L
+clear
+
+```
+
+### Create a user
+
+```sh
+useradd [options] USERNAME
+passwd USERNAME
+```
+
+### Assigning Sudo Rights to a user
+
+```sh
+usermod -aG wheel USERNAME
+groups USERNAME
+
+#Remove a user from a group
+sudo gpasswd -d USERNAME wheel
+```
+
+### Shows command descriptions
+
+```sh
+whatis <COMMAND>
+man <COMMAND>
+```
+
+### hardware info
+
+```sh
+cat /proc/cpuinfo
+lscpu
+```
+
+### Display the information of OS
+
+```sh
+cat /etc/os-release
+uname -a
+
+lsb_release -a
+neofetch
+```
 
 ### Linux system shutdown and reboot
 
@@ -361,11 +425,36 @@ curl -s localhost:8080/v1/getdata | jq .[].salary | awk '{total+=$1} END {printf
 curl -X DELETE localhost:8080/v1/getdata/5
 ```
 
+### Grabing an ip automatically from DHCP
+
+```sh
+dhclient -v
+
+hostnamectl
+```
+
+### Display all interfaces which are currently available, even if down
+
+```sh
+ifconfig -a
+```
+
+### What Is My IP Address?
+
+```sh
+curl ifconfig.me
+```
+
 ## Utility commands
 
 ### Archiving files & directories
 
 ```sh
+# Compress Files
+tar -czvf logs_archive.tar.gz *
+# Extract from a compressed file
+tar -xzvf logs_archive.tar.gz -C ./log
+
 # gzp & bzip2
 time gzip -k -1 file.csv
 time bzip2 -k -9 file.csv
