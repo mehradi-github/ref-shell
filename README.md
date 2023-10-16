@@ -8,6 +8,7 @@
     - [Converting characters of text](#converting-characters-of-text)
   - [Shells](#shells)
     - [Creating job and kill](#creating-job-and-kill)
+    - [Redirection \& Piping](#redirection--piping)
   - [System Commands](#system-commands)
     - [Users \& Groups](#users--groups)
     - [Determining the version of operating system](#determining-the-version-of-operating-system)
@@ -106,6 +107,32 @@ watch date
 ps
 kill -l
 kill -9 NUM
+```
+
+### Redirection & Piping
+
+```sh
+ls -l | grep sam | awk '{print $9}'
+find ./ -name "junk" 2> /dev/null > output.txt
+
+cat < output.txt > other.txt
+(cat < output.txt) > other.txt
+
+cat << EOF >>  other.txt
+> num,date
+> 1,01/01/2023
+> 2,01/01/2022
+> 3,01/01/2021
+> 4,01/01/2020
+> 5,01/01/2019
+EOF
+
+wc other.txt
+cat other.txt | sort -g
+head -n5 other.txt | tail -n+2
+
+head -n4 other.txt | tail -n+2 | sort -r -t "/" -k 3
+
 ```
 
 ## System Commands
