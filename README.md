@@ -438,7 +438,7 @@ vi /etc/ssh/sshd_config # passwordAthuntication no
 service ssh restart
 service sshd reload
 
-
+ssh-keyscan -H agent1 >> /var/lib/jenkins/.ssh/known_hosts
 
 ```
 
