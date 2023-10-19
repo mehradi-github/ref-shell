@@ -12,6 +12,7 @@
     - [Converting characters of text](#converting-characters-of-text)
     - [WC command](#wc-command)
   - [System Commands](#system-commands)
+    - [systemctl](#systemctl)
     - [Users and Groups](#users-and-groups)
     - [Assigning Sudo Rights to a user](#assigning-sudo-rights-to-a-user)
     - [hardware info](#hardware-info)
@@ -205,6 +206,15 @@ apt list installed | wc -l
 ```
 
 ## System Commands
+
+### systemctl
+
+```sh
+sudo systemctl daemon-reload
+
+sudo systemctl enable --now jenkins
+sudo systemctl status jenkins
+```
 
 ### Users and Groups
 
