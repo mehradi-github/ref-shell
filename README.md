@@ -29,6 +29,7 @@
     - [Commands for troubleshooting network issues](#commands-for-troubleshooting-network-issues)
     - [DNS Lookups](#dns-lookups)
     - [Secure remote operations with SSH](#secure-remote-operations-with-ssh)
+    - [Enable or disable remote root login](#enable-or-disable-remote-root-login)
     - [Setting Proxy](#setting-proxy)
     - [Testing web services with CURL](#testing-web-services-with-curl)
     - [Grabing an ip automatically from DHCP](#grabing-an-ip-automatically-from-dhcp)
@@ -440,6 +441,14 @@ service sshd reload
 
 ssh-keyscan -H agent1 >> /var/lib/jenkins/.ssh/known_hosts
 
+```
+
+### Enable or disable remote root login
+
+```sh
+/etc/ssh/sshd_config:
+	PermitRootLogin yes #enabled
+  PermitRootLogin no #disabled
 ```
 
 ### Setting Proxy
