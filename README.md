@@ -466,10 +466,13 @@ ssh-keyscan -H agent1 >> /var/lib/jenkins/.ssh/known_hosts
 ```sh
 # Show proxy
 printenv | grep -i proxy
-unset all_proxy && unset ALL_PROXY
-export all_proxy=socks5://127.0.0.1:20170/ && export ALL_PROXY=socks5://127.0.0.1:20170/
-export http_proxy=http://127.0.0.1:20171/ && export HTTP_PROXY=http://127.0.0.1:20171/
-export https_proxy=http://127.0.0.1:20171/ && export HTTPS_PROXY=http://127.0.0.1:20171/
+# set proxy
+export all_proxy=socks5://192.168.1.34:1089/ && export ALL_PROXY=socks5://192.168.1.34:1089/
+export http_proxy=http://192.168.1.34:8889/ && export HTTP_PROXY=http://192.168.1.34:8889/
+export https_proxy=http://192.168.1.34:8889/ && export HTTPS_PROXY=http://192.168.1.34:8889/
+export NO_PROXY=localhost,192.168.1.34,172.17.0.1,172.17.0.2 && export no_proxy=localhost,192.168.1.34,172.17.0.1,172.17.0.2
+# unset
+unset all_proxy && unset ALL_PROXY && unset http_proxy && unset HTTP_PROXY && unset https_proxy && unset HTTPS_PROXY && unset NO_PROXY && unset no_proxy
 
 # Setting Proxy for sudo
 sudo visudo -f /etc/sudoers.d/NAME
@@ -477,6 +480,7 @@ sudo visudo -f /etc/sudoers.d/NAME
 # Defaults env_keep += "no_proxy all_proxy NO_PROXY ALL_PROXY"
 Defaults env_keep += "no_proxy NO_PROXY http_proxy HTTP_PROXY https_proxy HTTPS_PROXY"
 source ~/.bashrc
+
 ```
 
 ### Testing web services with CURL
