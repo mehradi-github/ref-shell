@@ -153,6 +153,8 @@ stream editor for filtering and transforming text
 
 ```sh
 # s: s/regexp/replacement/
+sed -i -e 's/,/:/g' other.txt
+
 head -n4 other.txt | sed 's/,/:/g'
 
 head -n4 other.txt | sed 's@/@#@g'
