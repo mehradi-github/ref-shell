@@ -370,9 +370,13 @@ kill -15 PID
 ### Scheduling jobs with CRON
 
 ```sh
+crontab -e
+* * * * * date >> crontest.txt
+tail -f crontest.txt
+
+
 man cron
 man -s5 crontab
-
 
 # Example of job definition:
 # .---------------- minute (0 - 59)
@@ -383,10 +387,6 @@ man -s5 crontab
 # |  |  |  |  |
 # *  *  *  *  * user-name  command to be executed
 
-
-crontab -e
-# * * * * * date >> crontest.txt
-tail -f crontest.txt
 crontab --help
 # examples:
  # use /bin/bash to run commands, instead of the default /bin/sh
