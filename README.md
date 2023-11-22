@@ -26,6 +26,7 @@
     - [Finding processes by file \& Vice-Versa](#finding-processes-by-file--vice-versa)
     - [Creating job and kill process](#creating-job-and-kill-process)
     - [Scheduling jobs with CRON](#scheduling-jobs-with-cron)
+    - [Changing the Time Zone in Linux via ssh](#changing-the-time-zone-in-linux-via-ssh)
   - [Networking](#networking)
     - [Commands for troubleshooting network issues](#commands-for-troubleshooting-network-issues)
     - [DNS Lookups](#dns-lookups)
@@ -413,6 +414,15 @@ crontab --help
 
        # Execute a program and run a notification every day at 10:00 am
        0 10 * * *  $HOME/bin/program | DISPLAY=:0 notify-send "Program run" "$(cat)"
+```
+
+### Changing the Time Zone in Linux via ssh
+
+```sh
+ssh root@IP timedatectl
+ssh root@IP timedatectl list-timezones
+ssh root@IP timedatectl set-timezone Europe/Berlin
+ssh root@IP timedatectl
 ```
 
 ## Networking
